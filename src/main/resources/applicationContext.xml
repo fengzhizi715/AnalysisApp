@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="cn.magicwindow.analysisapp"/>
+
+    <bean id="analysis" class="cn.magicwindow.analysisapp.analysis.Analysis">
+        <property name="handlers">
+            <list>
+                <ref bean="amapHandler" />
+                <ref bean="baiduHandler" />
+                <ref bean="qiHooHandler" />
+                <ref bean="umengHandler" />
+                <ref bean="tencentHandler" />
+                <ref bean="aliPayHandler" />
+                <ref bean="fabricHandler" />
+                <ref bean="mediaVHandler" />
+                <ref bean="weiboHandler" />
+                <ref bean="igexinHandler" />
+                <ref bean="xiaomiHandler" />
+                <ref bean="cobubRazorHandler" />
+                <ref bean="facebookHandler" />
+                <ref bean="VKHandler" />
+                <ref bean="appsflyerHandler" />
+                <ref bean="kakaoHandler" />
+                <ref bean="lineHandler" />
+                <ref bean="lightspeedHandler" />
+                <ref bean="domobHandler" />
+                <ref bean="rongCloudHandler" />
+                <ref bean="meizuHandler" />
+                <ref bean="neteaseHandler" />
+                <ref bean="googleHandler" />
+                <ref bean="dataEyeHandler" />
+                <ref bean="JPushHandler" />
+                <ref bean="iflytekHandler" />
+                <ref bean="youzanHandler" />
+                <ref bean="alibabaHandler" />
+                <ref bean="shareSDKHandler" />
+                <ref bean="didiHandler" />
+                <ref bean="bugsnagHandler" />
+                <ref bean="cmcmHandler" />
+                <ref bean="camera360Handler" />
+                <ref bean="inmobiHandler" />
+                <ref bean="momoHandler" />
+                <ref bean="huaweiHandler" />
+                <ref bean="intowowHandler" />
+                <ref bean="wemartHandler" />
+                <ref bean="yuntaoHandler" />
+            </list>
+        </property>
+    </bean>
+
+</beans>
