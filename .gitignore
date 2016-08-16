@@ -13,6 +13,5 @@ hs_err_pid*
 
 /.idea
 .idea/
-cn.magicwindow.analysisapp.iml
-pom.xml
 target/
+cn.magicwindow.analysisapp.iml
