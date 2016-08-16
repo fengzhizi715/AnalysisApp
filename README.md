@@ -9,6 +9,8 @@ Handler用于处理sdk的特征值，它大部分使用groovy编写，因为groo
 
 对于某些Handler特别复杂，比如TencentHandler和BaiduHandler，采用DFA的算法进行优化。
 
+稍后会整理出这个工具能够分析哪些sdk :)
+
 
 
 
