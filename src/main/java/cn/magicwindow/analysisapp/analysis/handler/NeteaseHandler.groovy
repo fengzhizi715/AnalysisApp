@@ -13,8 +13,12 @@ class NeteaseHandler extends BaseHandler {
 
     protected boolean handle(ActivityRequest request) {
 
-        if (request?.getMetadata()?.getName().equals("BUGRPT_APPID")) {
+        if (request?.metadata?.name=="BUGRPT_APPID") {
             def sdk = new SDK("网易云捕sdk");
+            AppInfo.getInstance().addSDK(sdk);
+            return true;
+        } else if (request?.receiver?.name?.contains("yxapi.AppRegister")) {
+            def sdk = new SDK("易信sdk");
             AppInfo.getInstance().addSDK(sdk);
             return true;
         }
