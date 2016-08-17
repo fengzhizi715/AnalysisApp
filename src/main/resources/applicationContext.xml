@@ -49,6 +49,7 @@
                 <ref bean="intowowHandler" />
                 <ref bean="wemartHandler" />
                 <ref bean="yuntaoHandler" />
+                <ref bean="playDataHandler" />
             </list>
         </property>
     </bean>

@@ -30,7 +30,7 @@ public class Main {
         AppInfo appInfo = AppInfo.getInstance();
         int processCount = appInfo.getProcessCount();
 
-        File file = new File("/Users/tony/jadx/apk-tool/com.cn21.ecloud_4.5.1_141/AndroidManifest.xml");
+        File file = new File("/Users/tony/jadx/apk-tool/com.cubic.autohome_6.2.0_620/AndroidManifest.xml");
         InputStream in = null;
         if (file!=null) {
             try {
@@ -88,7 +88,6 @@ public class Main {
                 if (in !=null) {
                     try {
                         in.close();
-                        in = null;
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
