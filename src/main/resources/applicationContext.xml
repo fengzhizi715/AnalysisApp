@@ -50,6 +50,7 @@
                 <ref bean="wemartHandler" />
                 <ref bean="yuntaoHandler" />
                 <ref bean="playDataHandler" />
+                <ref bean="talkingdataHandler" />
             </list>
         </property>
     </bean>

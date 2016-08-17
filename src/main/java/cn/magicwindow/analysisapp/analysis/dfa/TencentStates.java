@@ -104,7 +104,8 @@ public enum TencentStates implements State {
                     SDK sdk = new SDK("应用宝省流量更新sdk");
                     AppInfo.getInstance().addSDK(sdk);
                     return AcceptingState.Accept;
-                } else if (request.getService().getName().equals("com.tencent.android.tpush.service.XGPushService")) {
+                } else if (request.getService().getName().equals("com.tencent.android.tpush.service.XGPushService")
+                        || request.getService().getName().equals("com.tencent.android.tpush.rpc.XGRemoteService")) {
                     SDK sdk = new SDK("信鸽Push sdk");
                     AppInfo.getInstance().addSDK(sdk);
                     return AcceptingState.Accept;
