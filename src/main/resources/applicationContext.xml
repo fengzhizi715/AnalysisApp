@@ -51,6 +51,8 @@
                 <ref bean="yuntaoHandler" />
                 <ref bean="playDataHandler" />
                 <ref bean="talkingdataHandler" />
+                <ref bean="vitamioHandler" />
+                <ref bean="meipaiHandler" />
             </list>
         </property>
     </bean>

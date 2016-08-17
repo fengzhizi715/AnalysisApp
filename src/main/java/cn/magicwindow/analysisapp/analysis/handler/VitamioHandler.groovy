@@ -6,17 +6,16 @@ import cn.magicwindow.analysisapp.analysis.ActivityRequest
 import org.springframework.stereotype.Service
 
 /**
- * Created by tony on 16/8/14.
+ * Created by tony on 16/8/17.
  */
 @Service
-class CmcmHandler extends BaseHandler {
+class VitamioHandler extends BaseHandler {
 
     protected boolean handle(ActivityRequest request) {
 
-        if (request?.activity?.name == "com.cmcm.adsdk.interstitial.PicksInterstitialActivity" ||
-                request?.activity?.name == "com.cmcm.adsdk.nativead.PicksLoadingActivity") {
+        if (request?.activity?.name=="io.vov.vitamio.activity.InitActivity") {
 
-            def sdk = new SDK("猎豹移动广告sdk", true);
+            def sdk = new SDK("Vitamio sdk");
             AppInfo.getInstance().addSDK(sdk);
             return true;
         }

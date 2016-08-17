@@ -13,7 +13,7 @@ class RongCloudHandler extends BaseHandler {
 
     protected boolean handle(ActivityRequest request) {
 
-        if (request?.metadata?.name.equals("RONG_CLOUD_APP_KEY")) {
+        if (request?.metadata?.name=="RONG_CLOUD_APP_KEY") {
 
             def sdk = new SDK("融云sdk");
             AppInfo.getInstance().addSDK(sdk);
