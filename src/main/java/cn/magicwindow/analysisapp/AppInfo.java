@@ -1,7 +1,9 @@
 package cn.magicwindow.analysisapp;
 
 import cn.magicwindow.analysisapp.collection.NoDuplicatesArrayList;
+import cn.magicwindow.analysisapp.xml.model.MetaDataEntry;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,12 +13,16 @@ public class AppInfo {
 
     private List<SDK> sdks;
     private List<SDK> adsdks;
-    private int processCount=1;
+    private List<SuspectedSDK> suspectedSDKs;
+    private String packageName;
+    private int processCount=1; // sdk进程数
+
     private static final AppInfo instance = new AppInfo();
 
     private AppInfo() {
         sdks = new NoDuplicatesArrayList<SDK>();
         adsdks = new NoDuplicatesArrayList<SDK>();
+        suspectedSDKs = new ArrayList<SuspectedSDK>();
     }
 
     public static AppInfo getInstance() {
@@ -32,6 +38,27 @@ public class AppInfo {
             adsdks.add(sdk);
         }
         sdks.add(sdk);
+    }
+
+    public List<SuspectedSDK> getSuspectedSDKs() {
+
+        return suspectedSDKs;
+    }
+
+    public String getPackageName() {
+        return packageName;
+    }
+
+    public void setPackageName(String packageName) {
+        this.packageName = packageName;
+    }
+
+    public void addSuspectedSDK(Object object) {
+
+        if (object instanceof MetaDataEntry) {
+
+            suspectedSDKs.add(new SuspectedSDK(object));
+        }
     }
 
     public int getProcessCount() {

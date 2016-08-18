@@ -30,13 +30,15 @@ public class Main {
         AppInfo appInfo = AppInfo.getInstance();
         int processCount = appInfo.getProcessCount();
 
-        File file = new File("/Users/tony/jadx/apk-tool/com.yibasan.lizhifm_3.8.8_93695/AndroidManifest.xml");
+        File file = new File("/Users/tony/jadx/apk-tool/com.ijinshan.browser_fast_4.13.1_413001/AndroidManifest.xml");
         InputStream in = null;
         if (file!=null) {
             try {
                 in = new FileInputStream(file);
                 XmlHandler xmlHandler = new XmlHandler();
                 AndroidManifest androidManifest = (AndroidManifest) xmlHandler.parse(AndroidManifest.class,in);
+                String packageName = androidManifest.getPackageName();
+                AppInfo.getInstance().setPackageName(packageName);
 
                 ActivityRequest request;
                 List<ActivityEntry> activities = androidManifest.getApplication().getActivities();
@@ -82,6 +84,13 @@ public class Main {
                 }
 
                 System.out.println(appInfo);
+
+                if (appInfo.getSuspectedSDKs()!=null && appInfo.getSuspectedSDKs().size()>0) {
+                    System.out.println("\r\n疑似sdk:");
+                    for(SuspectedSDK item:appInfo.getSuspectedSDKs()) {
+                        System.out.println(item);
+                    }
+                }
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } finally {

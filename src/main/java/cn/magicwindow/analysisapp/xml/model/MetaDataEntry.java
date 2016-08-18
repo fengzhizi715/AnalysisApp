@@ -20,4 +20,8 @@ public class MetaDataEntry {
     public String getName() {
         return name;
     }
+
+    public String getValue() {
+        return value;
+    }
 }

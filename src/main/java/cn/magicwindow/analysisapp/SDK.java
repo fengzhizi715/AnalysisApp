@@ -1,5 +1,7 @@
 package cn.magicwindow.analysisapp;
 
+import lombok.ToString;
+
 /**
  * Created by tony on 16/8/9.
  */

@@ -22,4 +22,7 @@ public class AndroidManifest {
         return application;
     }
 
+    public String getPackageName() {
+        return packageName;
+    }
 }
