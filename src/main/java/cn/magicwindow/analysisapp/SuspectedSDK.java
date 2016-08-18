@@ -7,7 +7,7 @@ import cn.magicwindow.analysisapp.xml.model.*;
  * 疑似sdk
  * Created by tony on 16/8/18.
  */
-public class SuspectedSDK {
+public class SuspectedSDK{
 
     private Type type;
     private String name;
@@ -59,7 +59,7 @@ public class SuspectedSDK {
 
                        if (Preconditions.isNotBlank(intentFilter.categories)) {
                            for (IntentCategory category:intentFilter.categories) {
-                               sb.append("\r\n    ").append("<action android:name=").append(category.name).append("\" />");
+                               sb.append("\r\n    ").append("<action android:name=\"").append(category.name).append("\" />");
                            }
                        }
 
@@ -75,5 +75,9 @@ public class SuspectedSDK {
         }
 
         return sb.toString();
+    }
+
+    public Type getType() {
+        return type;
     }
 }

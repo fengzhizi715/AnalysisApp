@@ -11,6 +11,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.*;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -31,7 +33,7 @@ public class Main {
         AppInfo appInfo = AppInfo.getInstance();
         int processCount = appInfo.getProcessCount();
 
-        File file = new File("/Users/tony/jadx/apk-tool/com.ijinshan.browser_fast_4.13.1_413001/AndroidManifest.xml");
+        File file = new File("/Users/tony/jadx/apk-tool/com.gotokeep.keep_3.9.0_3865/AndroidManifest.xml");
         InputStream in = null;
         if (file!=null) {
             try {
@@ -92,6 +94,19 @@ public class Main {
                 System.out.println(appInfo);
 
                 if (Preconditions.isNotBlank(appInfo.getSuspectedSDKs())) {
+                    Collections.sort(appInfo.getSuspectedSDKs(), new Comparator() {
+                        public int compare(Object o1, Object o2) {
+                            SuspectedSDK suspectedSDK1 = (SuspectedSDK) o1;
+                            SuspectedSDK suspectedSDK2 = (SuspectedSDK) o2;
+
+                            if (suspectedSDK1.getType()!=null && suspectedSDK2.getType()!=null) {
+                                return suspectedSDK1.getType().getIndex()-suspectedSDK2.getType().getIndex();
+                            }
+
+                            return 0;
+                        }
+                    });
+
                     System.out.println("\r\n疑似sdk:");
                     for(SuspectedSDK item:appInfo.getSuspectedSDKs()) {
                         System.out.println(item);

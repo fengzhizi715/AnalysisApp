@@ -1,6 +1,7 @@
 package cn.magicwindow.analysisapp;
 
 import cn.magicwindow.analysisapp.collection.NoDuplicatesArrayList;
+import cn.magicwindow.analysisapp.utils.Preconditions;
 import cn.magicwindow.analysisapp.xml.model.ActivityEntry;
 import cn.magicwindow.analysisapp.xml.model.MetaDataEntry;
 
@@ -82,7 +83,7 @@ public class AppInfo {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        if (sdks!=null && sdks.size()>0) {
+        if (Preconditions.isNotBlank(sdks)) {
 
             sb.append("app 所使用的第三方sdk数:").append(sdks.size()).append(",").append("其中广告sdk数:").append(adsdks.size()).append("\r\n");
 

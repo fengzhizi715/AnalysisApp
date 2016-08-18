@@ -1,7 +1,7 @@
 package cn.magicwindow.analysisapp.analysis.handler;
 
-import cn.magicwindow.analysisapp.AppInfo;
 import cn.magicwindow.analysisapp.analysis.ActivityRequest;
+import cn.magicwindow.analysisapp.utils.SuspectedSDKUtils;
 
 /**
  * Created by tony on 16/8/8.
@@ -19,22 +19,14 @@ public abstract class BaseHandler {
         }
 
         if (!handle(request)) {
-            // 当前处理者不能胜任，则传递至职责链的下一节点
+            // 当前处理者不能胜任，则传递至责任链的下一节点
             if (this.nextHandler != null) {
                 // 这里使用了递归调用
                 this.nextHandler.handleRequest(request);
             } else {
 
                 // 对疑似sdk单独收集
-                if (request.getMetadata()!=null) {
-                    AppInfo.getInstance().addSuspectedSDK(request.getMetadata());
-                } else if (request.getActivity()!=null && request.getActivity().getName()!=null) {
-                    if (!(request.getActivity().getName().startsWith(".")
-                            || request.getActivity().getName().startsWith(AppInfo.getInstance().getPackageName()))) {
-
-                        AppInfo.getInstance().addSuspectedSDK(request.getActivity());
-                    }
-                }
+                SuspectedSDKUtils.saveRequest(request);
             }
         }
     }
