@@ -21,6 +21,9 @@ public enum TencentStates implements State {
             } else if (request.getService()!=null) {
 
                 return SERVICE_STATE;
+            } else if (request.getReceiver()!=null) {
+
+                return RECEIVER_STATE;
             }
 
             return FailingState.Fail;
@@ -51,6 +54,10 @@ public enum TencentStates implements State {
                     return AcceptingState.Accept;
                 } else if (request.getActivity().getName().equals("com.qq.e.ads.ADActivity")) {
                     SDK sdk = new SDK("广点通sdk",true);
+                    AppInfo.getInstance().addSDK(sdk);
+                    return AcceptingState.Accept;
+                } else if (request.getActivity().getName().equals("com.tencent.midas.qq.APReidasQQWalletActivity")) {
+                    SDK sdk = new SDK("qq钱包sdk");
                     AppInfo.getInstance().addSDK(sdk);
                     return AcceptingState.Accept;
                 }
@@ -107,6 +114,22 @@ public enum TencentStates implements State {
                 } else if (request.getService().getName().equals("com.tencent.android.tpush.service.XGPushService")
                         || request.getService().getName().equals("com.tencent.android.tpush.rpc.XGRemoteService")) {
                     SDK sdk = new SDK("信鸽Push sdk");
+                    AppInfo.getInstance().addSDK(sdk);
+                    return AcceptingState.Accept;
+                }
+            }
+
+            return FailingState.Fail;
+        }
+    },
+
+    RECEIVER_STATE {
+
+        public State next(ActivityRequest request) {
+
+            if (request.getReceiver().getName() != null) {
+                if (request.getReceiver().getName().equals("com.tencent.msdk.dns.HttpDnsCache$ConnectivityChangeReceiver")) {
+                    SDK sdk = new SDK("腾讯云智营防劫持sdk");
                     AppInfo.getInstance().addSDK(sdk);
                     return AcceptingState.Accept;
                 }

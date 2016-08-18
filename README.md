@@ -11,14 +11,8 @@ Handler用于处理sdk的特征值，它大部分使用groovy编写，因为groo
 
 Main.java的main()是整个程序的入口，只需修改AndroidManifest.xml在main()的路径即可使用。
 
+**如何获取app的AndroidManifest.xml文件不在本工具的使用范围之列。**
+
 ***
 
-稍后会整理出这个工具能够分析哪些sdk :)
-
-
-
-
-
-
-
-
+稍后会整理出这个工具能够分析出哪些sdk :)
