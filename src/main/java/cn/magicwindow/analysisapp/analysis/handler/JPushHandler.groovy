@@ -13,7 +13,7 @@ class JPushHandler extends BaseHandler {
 
     protected boolean handle(ActivityRequest request) {
 
-        if (request?.metadata?.name.equals("JPUSH_CHANNEL")) {
+        if (request?.metadata?.name=="JPUSH_APPKEY") {
 
             def sdk = new SDK("JPush推送sdk");
             AppInfo.getInstance().addSDK(sdk);

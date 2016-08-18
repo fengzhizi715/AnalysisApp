@@ -1,6 +1,7 @@
 package cn.magicwindow.analysisapp.xml.model;
 
 import lombok.Data;
+import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
@@ -13,9 +14,12 @@ import java.util.List;
 @Root(strict = false)
 public class IntentFilterEntry {
 
+    @Attribute(name = "label", required = false)
+    public String label;
+
     @ElementList(entry = "action", inline = true, required = false)
-    private List<IntentAction> actions;
+    public List<IntentAction> actions;
 
     @ElementList(entry = "category", inline = true, required = false)
-    private List<IntentCategory> categories;
+    public List<IntentCategory> categories;
 }

@@ -12,6 +12,6 @@ import org.simpleframework.xml.Root;
 public class IntentAction {
 
     @Attribute(name = "name")
-    private String name;
+    public String name;
 
 }

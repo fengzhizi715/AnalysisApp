@@ -1,8 +1,7 @@
 package cn.magicwindow.analysisapp;
 
-import cn.magicwindow.analysisapp.xml.model.ActivityEntry;
-import cn.magicwindow.analysisapp.xml.model.IntentFilterEntry;
-import cn.magicwindow.analysisapp.xml.model.MetaDataEntry;
+import cn.magicwindow.analysisapp.utils.Preconditions;
+import cn.magicwindow.analysisapp.xml.model.*;
 
 /**
  * 疑似sdk
@@ -40,14 +39,35 @@ public class SuspectedSDK {
 
             case ACTIVITY:
 
-//                ActivityEntry activityEntry = (ActivityEntry)obj;
-//                sb.append("<activity android:name=\"").append(name).append("\" ");
-//                if (activityEntry.intentFilter!=null && activityEntry.intentFilter.size()>0) {
-//                   for (IntentFilterEntry intentFilter:activityEntry.intentFilter) {
-//
-//                       sb.append("<intent-filter");
-//                   }
-//                }
+                ActivityEntry activityEntry = (ActivityEntry)obj;
+                sb.append("<activity android:name=\"").append(name).append("\" ");
+                if (Preconditions.isNotBlank(activityEntry.intentFilter)) {
+                   for (IntentFilterEntry intentFilter:activityEntry.intentFilter) {
+
+                       sb.append("\r\n  ").append("<intent-filter");
+                       if (Preconditions.isNotBlank(intentFilter.label)) {
+                           sb.append("android:label=\"").append(intentFilter.label).append("\">");
+                       } else {
+                           sb.append(">");
+                       }
+
+                       if (Preconditions.isNotBlank(intentFilter.actions)) {
+                           for (IntentAction action:intentFilter.actions) {
+                               sb.append("\r\n    ").append("<action android:name=").append(action.name).append("\" />");
+                           }
+                       }
+
+                       if (Preconditions.isNotBlank(intentFilter.categories)) {
+                           for (IntentCategory category:intentFilter.categories) {
+                               sb.append("\r\n    ").append("<action android:name=").append(category.name).append("\" />");
+                           }
+                       }
+
+                       sb.append("\r\n  ").append("</intent-filter>");
+                   }
+                } else {
+                    sb.append("/>");
+                }
 
                 break;
             default:

@@ -12,5 +12,5 @@ import org.simpleframework.xml.Root;
 public class IntentCategory {
 
     @Attribute(name = "name")
-    private String name;
+    public String name;
 }
