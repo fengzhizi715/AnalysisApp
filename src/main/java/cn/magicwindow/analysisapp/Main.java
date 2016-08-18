@@ -2,6 +2,7 @@ package cn.magicwindow.analysisapp;
 
 import cn.magicwindow.analysisapp.analysis.*;
 import cn.magicwindow.analysisapp.analysis.handler.BaseHandler;
+import cn.magicwindow.analysisapp.utils.Preconditions;
 import cn.magicwindow.analysisapp.xml.model.*;
 import cn.magicwindow.analysisapp.xml.XmlHandler;
 import com.google.common.collect.ArrayListMultimap;
@@ -37,36 +38,41 @@ public class Main {
                 in = new FileInputStream(file);
                 XmlHandler xmlHandler = new XmlHandler();
                 AndroidManifest androidManifest = (AndroidManifest) xmlHandler.parse(AndroidManifest.class,in);
-                String packageName = androidManifest.getPackageName();
+
+                if (androidManifest==null || androidManifest.application==null) {
+                    return;
+                }
+
+                String packageName = androidManifest.packageName;
                 AppInfo.getInstance().setPackageName(packageName);
 
                 ActivityRequest request;
-                List<ActivityEntry> activities = androidManifest.getApplication().getActivities();
-                if (activities!=null && activities.size()>0) {
+                List<ActivityEntry> activities = androidManifest.application.getActivities();
+                if (Preconditions.isNotBlank(activities)) {
                     for (ActivityEntry activity:activities) {
                         request = new ActivityRequest(activity);
                         handler.handleRequest(request);
                     }
                 }
 
-                List<MetaDataEntry> metadatas = androidManifest.getApplication().getMetaDatas();
-                if (metadatas!=null && metadatas.size()>0) {
+                List<MetaDataEntry> metadatas = androidManifest.application.getMetaDatas();
+                if (Preconditions.isNotBlank(metadatas)) {
                     for (MetaDataEntry metadata:metadatas) {
                         request = new ActivityRequest(metadata);
                         handler.handleRequest(request);
                     }
                 }
 
-                List<ReceiverEntry> receivers = androidManifest.getApplication().getReceivers();
-                if (receivers!=null && receivers.size()>0) {
+                List<ReceiverEntry> receivers = androidManifest.application.getReceivers();
+                if (Preconditions.isNotBlank(receivers)) {
                     for (ReceiverEntry receiver:receivers) {
                         request = new ActivityRequest(receiver);
                         handler.handleRequest(request);
                     }
                 }
 
-                List<ServiceEntry> services = androidManifest.getApplication().getServices();
-                if (services!=null && services.size()>0) {
+                List<ServiceEntry> services = androidManifest.application.getServices();
+                if (Preconditions.isNotBlank(services)) {
                     Multimap<String,ServiceEntry> multimap = ArrayListMultimap.create();
                     for (ServiceEntry service:services) {
 
@@ -85,7 +91,7 @@ public class Main {
 
                 System.out.println(appInfo);
 
-                if (appInfo.getSuspectedSDKs()!=null && appInfo.getSuspectedSDKs().size()>0) {
+                if (Preconditions.isNotBlank(appInfo.getSuspectedSDKs())) {
                     System.out.println("\r\n疑似sdk:");
                     for(SuspectedSDK item:appInfo.getSuspectedSDKs()) {
                         System.out.println(item);

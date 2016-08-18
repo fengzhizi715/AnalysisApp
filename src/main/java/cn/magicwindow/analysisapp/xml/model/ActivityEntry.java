@@ -21,7 +21,7 @@ public class ActivityEntry {
     private String excludedFromRecents;
 
     @ElementList(entry = "intent-filter", inline = true, required = false)
-    private List<IntentFilterEntry> intentFilter;
+    public List<IntentFilterEntry> intentFilter;
 
     public String getName() {
         return name;

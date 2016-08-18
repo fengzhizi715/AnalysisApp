@@ -1,6 +1,7 @@
 package cn.magicwindow.analysisapp;
 
 import cn.magicwindow.analysisapp.collection.NoDuplicatesArrayList;
+import cn.magicwindow.analysisapp.xml.model.ActivityEntry;
 import cn.magicwindow.analysisapp.xml.model.MetaDataEntry;
 
 import java.util.ArrayList;
@@ -55,8 +56,7 @@ public class AppInfo {
 
     public void addSuspectedSDK(Object object) {
 
-        if (object instanceof MetaDataEntry) {
-
+        if (object!=null) {
             suspectedSDKs.add(new SuspectedSDK(object));
         }
     }

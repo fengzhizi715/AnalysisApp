@@ -13,16 +13,8 @@ import org.simpleframework.xml.Root;
 public class AndroidManifest {
 
     @Attribute(name = "package", required = true)
-    private String packageName;
+    public String packageName;
 
     @Element(name = "application")
-    private ApplicationEntry application;
-
-    public ApplicationEntry getApplication() {
-        return application;
-    }
-
-    public String getPackageName() {
-        return packageName;
-    }
+    public ApplicationEntry application;
 }

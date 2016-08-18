@@ -1,5 +1,7 @@
 package cn.magicwindow.analysisapp;
 
+import cn.magicwindow.analysisapp.xml.model.ActivityEntry;
+import cn.magicwindow.analysisapp.xml.model.IntentFilterEntry;
 import cn.magicwindow.analysisapp.xml.model.MetaDataEntry;
 
 /**
@@ -12,26 +14,16 @@ public class SuspectedSDK {
     private String name;
     private Object obj;
 
-    enum Type {
-
-        METADATA(1),
-        ACTIVITY(2),
-        SERVICE(3),
-        RECEIVER(4);
-
-        private int index;
-
-        Type(int index) {
-            this.index = index;
-        }
-    }
-
     public SuspectedSDK(Object obj) {
 
         if (obj instanceof MetaDataEntry) {
             this.name = ((MetaDataEntry) obj).getName();
             this.obj = obj;
             this.type = Type.METADATA;
+        } else if (obj instanceof ActivityEntry) {
+            this.name = ((ActivityEntry) obj).getName();
+            this.obj = obj;
+            this.type = Type.ACTIVITY;
         }
     }
 
@@ -47,6 +39,15 @@ public class SuspectedSDK {
                 break;
 
             case ACTIVITY:
+
+//                ActivityEntry activityEntry = (ActivityEntry)obj;
+//                sb.append("<activity android:name=\"").append(name).append("\" ");
+//                if (activityEntry.intentFilter!=null && activityEntry.intentFilter.size()>0) {
+//                   for (IntentFilterEntry intentFilter:activityEntry.intentFilter) {
+//
+//                       sb.append("<intent-filter");
+//                   }
+//                }
 
                 break;
             default:
