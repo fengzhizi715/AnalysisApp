@@ -19,6 +19,18 @@ public class SuspectedSDKUtils {
 
                 AppInfo.getInstance().addSuspectedSDK(request.getActivity());
             }
+        }  else if (request.getService() != null && request.getService().getName() != null) {
+            if (!(request.getService().getName().startsWith(".")
+                    || request.getService().getName().startsWith(AppInfo.getInstance().getPackageName()))) {
+
+                AppInfo.getInstance().addSuspectedSDK(request.getService());
+            }
+        } else if (request.getReceiver() !=null && request.getReceiver().getName() !=null) {
+            if (!(request.getReceiver().getName().startsWith(".")
+                    || request.getReceiver().getName().startsWith(AppInfo.getInstance().getPackageName()))) {
+
+                AppInfo.getInstance().addSuspectedSDK(request.getReceiver());
+            }
         }
     }
 }

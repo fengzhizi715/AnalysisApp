@@ -23,6 +23,14 @@ public class SuspectedSDK{
             this.name = ((ActivityEntry) obj).getName();
             this.obj = obj;
             this.type = Type.ACTIVITY;
+        } else if (obj instanceof ServiceEntry) {
+            this.name = ((ServiceEntry) obj).getName();
+            this.obj = obj;
+            this.type = Type.SERVICE;
+        } else if (obj instanceof ReceiverEntry) {
+            this.name = ((ReceiverEntry) obj).getName();
+            this.obj = obj;
+            this.type = Type.RECEIVER;
         }
     }
 
@@ -69,6 +77,22 @@ public class SuspectedSDK{
                     sb.append("/>");
                 }
 
+                break;
+
+            case SERVICE:
+
+                ServiceEntry serviceEntry = (ServiceEntry)obj;
+                sb.append("<service android:name=\"").append(name).append("\" ");
+                if (Preconditions.isNotBlank(serviceEntry.getProcess())) {
+                    sb.append("android:process=\"").append(serviceEntry.getProcess()).append("\"/>");
+                } else {
+                    sb.append("/>");
+                }
+                break;
+
+            case RECEIVER:
+
+                sb.append("<receiver android:name=\"").append(name).append("\" />");
                 break;
             default:
                 break;
