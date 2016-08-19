@@ -2,9 +2,6 @@ package cn.magicwindow.analysisapp
 
 import cn.magicwindow.analysisapp.utils.Preconditions
 import cn.magicwindow.analysisapp.xml.model.ActivityEntry
-import cn.magicwindow.analysisapp.xml.model.IntentAction
-import cn.magicwindow.analysisapp.xml.model.IntentCategory
-import cn.magicwindow.analysisapp.xml.model.IntentFilterEntry
 import cn.magicwindow.analysisapp.xml.model.MetaDataEntry
 import cn.magicwindow.analysisapp.xml.model.ReceiverEntry
 import cn.magicwindow.analysisapp.xml.model.ServiceEntry
@@ -55,37 +52,42 @@ class SuspectedSDK {
             case Type.ACTIVITY:
 
                 ActivityEntry activityEntry = (ActivityEntry)obj;
-                sb.append("<activity android:name=\"").append(name).append("\" ");
+                def activty = """<activity android:name="$name" """
                 if (Preconditions.isNotBlank(activityEntry.intentFilter)) {
-                    sb.append(">")
-                    for (IntentFilterEntry intentFilter:activityEntry.intentFilter) {
+                    activty += ">"
 
-                        sb.append("\r\n  ").append("<intent-filter");
-                        if (Preconditions.isNotBlank(intentFilter.label)) {
-                            sb.append("android:label=\"").append(intentFilter.label).append("\">");
+                    activityEntry.intentFilter.each {
+                        activty += "\r\n  <intent-filter"
+                        if (Preconditions.isNotBlank(it.label)) {
+                            def label = it.label
+                            activty += """android:label="$label" >"""
                         } else {
-                            sb.append(">");
+                            activty += ">"
                         }
 
-                        if (Preconditions.isNotBlank(intentFilter.actions)) {
-                            for (IntentAction action:intentFilter.actions) {
-                                sb.append("\r\n    ").append("<action android:name=").append(action.name).append("\" />");
+                        if (Preconditions.isNotBlank(it.actions)) {
+                            it.actions.each {
+                                def intentAction ->
+                                    def intentActionName = intentAction.name
+                                    activty +="""\r\n    <action android:name="$intentActionName" />"""
                             }
                         }
 
-                        if (Preconditions.isNotBlank(intentFilter.categories)) {
-                            for (IntentCategory category:intentFilter.categories) {
-                                sb.append("\r\n    ").append("<action android:name=\"").append(category.name).append("\" />");
+                        if (Preconditions.isNotBlank(it.categories)) {
+                            it.categories.each {
+                                def intentCategory ->
+                                    def intentCategoryName = intentCategory.name
+                                    activty +="""\r\n    <category android:name="$intentCategoryName" />"""
                             }
                         }
 
-                        sb.append("\r\n  ").append("</intent-filter>");
-                        sb.append("\r\n").append("</activity>");
+                        activty +="\r\n  </intent-filter>"
+                        activty += "\r\n</activity>"
                     }
                 } else {
-                    sb.append("/>");
+                    activty += "/>"
                 }
-
+                sb.append(activty);
                 break;
 
             case Type.SERVICE:
