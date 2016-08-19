@@ -126,7 +126,7 @@ public class AppInfo {
                     }
                 });
 
-                sb.append("\r\n\r\ndebug模式发现疑似sdk:\r\n");
+                sb.append("\r\n\r\ndebug模式下发现疑似sdk:\r\n");
                 for(SuspectedSDK item:getSuspectedSDKs()) {
                     sb.append(item).append("\r\n");
                 }

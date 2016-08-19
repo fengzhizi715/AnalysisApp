@@ -91,7 +91,7 @@ public class Main {
                     }
                 }
 
-//                appInfo.setDebug(true);
+                appInfo.setDebug(true);
                 System.out.println(appInfo);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
