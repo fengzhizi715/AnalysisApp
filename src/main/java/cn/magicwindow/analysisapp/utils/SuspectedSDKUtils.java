@@ -10,9 +10,10 @@ public class SuspectedSDKUtils {
 
     public static void saveRequest(ActivityRequest request) {
 
-        if (request.getMetadata()!=null) {
+        if (request.getMetadata() != null) {
+
             AppInfo.getInstance().addSuspectedSDK(request.getMetadata());
-        } else if (request.getActivity()!=null && request.getActivity().getName()!=null) {
+        } else if (request.getActivity() != null && request.getActivity().getName() != null) {
             if (!(request.getActivity().getName().startsWith(".")
                     || request.getActivity().getName().startsWith(AppInfo.getInstance().getPackageName()))) {
 

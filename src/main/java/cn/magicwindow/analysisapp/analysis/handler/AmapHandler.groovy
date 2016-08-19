@@ -13,7 +13,8 @@ class AmapHandler extends BaseHandler {
 
     protected boolean handle(ActivityRequest request) {
 
-        if (request?.getMetadata()?.getName().equals("com.amap.api.v2.apikey")) {
+        if (request?.metadata?.name == "com.amap.api.v2.apikey") {
+
             def sdk = new SDK("高德地图sdk");
             AppInfo.getInstance().addSDK(sdk);
             return true;
