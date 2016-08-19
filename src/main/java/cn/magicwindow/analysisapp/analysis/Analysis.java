@@ -1,6 +1,7 @@
 package cn.magicwindow.analysisapp.analysis;
 
 import cn.magicwindow.analysisapp.analysis.handler.BaseHandler;
+import cn.magicwindow.analysisapp.utils.Preconditions;
 import lombok.Data;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class Analysis {
 
     public BaseHandler getFirstHandler() {
 
-        if (handlers!=null && handlers.size()>0) {
+        if (Preconditions.isNotBlank(handlers)) {
             for (int i = 0;i<handlers.size();i++) {
                 if(i>0) {
                     handlers.get(i-1).setNextHandler(handlers.get(i));

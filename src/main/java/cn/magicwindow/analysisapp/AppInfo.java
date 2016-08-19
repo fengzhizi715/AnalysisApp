@@ -2,10 +2,10 @@ package cn.magicwindow.analysisapp;
 
 import cn.magicwindow.analysisapp.collection.NoDuplicatesArrayList;
 import cn.magicwindow.analysisapp.utils.Preconditions;
-import cn.magicwindow.analysisapp.xml.model.ActivityEntry;
-import cn.magicwindow.analysisapp.xml.model.MetaDataEntry;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -18,6 +18,7 @@ public class AppInfo {
     private List<SuspectedSDK> suspectedSDKs;
     private String packageName;
     private int processCount=1; // sdk进程数
+    private boolean isDebug;
 
     private static final AppInfo instance = new AppInfo();
 
@@ -35,9 +36,18 @@ public class AppInfo {
         return sdks;
     }
 
+    public boolean isDebug() {
+        return isDebug;
+    }
+
+    public void setDebug(boolean debug) {
+        isDebug = debug;
+    }
+
     public void addSDK(SDK sdk) {
         if (sdk.isAd()) {
             adsdks.add(sdk);
+
         }
         sdks.add(sdk);
     }
@@ -101,6 +111,29 @@ public class AppInfo {
         sb.append("\r\n");
         sb.append("app 拥有的进程数:").append(processCount);
 
+        if (isDebug) {
+            if (Preconditions.isNotBlank(getSuspectedSDKs())) {
+                Collections.sort(getSuspectedSDKs(), new Comparator() {
+                    public int compare(Object o1, Object o2) {
+                        SuspectedSDK suspectedSDK1 = (SuspectedSDK) o1;
+                        SuspectedSDK suspectedSDK2 = (SuspectedSDK) o2;
+
+                        if (suspectedSDK1.getType()!=null && suspectedSDK2.getType()!=null) {
+                            return suspectedSDK1.getType().getIndex()-suspectedSDK2.getType().getIndex();
+                        }
+
+                        return 0;
+                    }
+                });
+
+                sb.append("\r\n\r\n疑似sdk:\r\n");
+                for(SuspectedSDK item:getSuspectedSDKs()) {
+                    sb.append(item).append("\r\n");
+                }
+            }
+        }
+
         return sb.toString();
     }
+
 }

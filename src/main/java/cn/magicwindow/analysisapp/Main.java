@@ -46,7 +46,7 @@ public class Main {
                 }
 
                 String packageName = androidManifest.packageName;
-                AppInfo.getInstance().setPackageName(packageName);
+                appInfo.setPackageName(packageName);
 
                 ActivityRequest request;
                 List<ActivityEntry> activities = androidManifest.application.getActivities();
@@ -91,27 +91,8 @@ public class Main {
                     }
                 }
 
+                appInfo.setDebug(true);
                 System.out.println(appInfo);
-
-                if (Preconditions.isNotBlank(appInfo.getSuspectedSDKs())) {
-                    Collections.sort(appInfo.getSuspectedSDKs(), new Comparator() {
-                        public int compare(Object o1, Object o2) {
-                            SuspectedSDK suspectedSDK1 = (SuspectedSDK) o1;
-                            SuspectedSDK suspectedSDK2 = (SuspectedSDK) o2;
-
-                            if (suspectedSDK1.getType()!=null && suspectedSDK2.getType()!=null) {
-                                return suspectedSDK1.getType().getIndex()-suspectedSDK2.getType().getIndex();
-                            }
-
-                            return 0;
-                        }
-                    });
-
-                    System.out.println("\r\n疑似sdk:");
-                    for(SuspectedSDK item:appInfo.getSuspectedSDKs()) {
-                        System.out.println(item);
-                    }
-                }
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } finally {
