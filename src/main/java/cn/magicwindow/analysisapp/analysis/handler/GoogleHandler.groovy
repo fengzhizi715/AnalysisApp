@@ -13,20 +13,25 @@ class GoogleHandler extends BaseHandler {
 
     protected boolean handle(ActivityRequest request) {
 
-        if (request?.metadata?.name.equals("com.google.android.maps.v2.API_KEY")
-                || request?.metadata?.name.equals("com.google.android.geo.API_KEY")) {
+        if (request?.metadata?.name == "com.google.android.maps.v2.API_KEY"
+                || request?.metadata?.name == "com.google.android.geo.API_KEY") {
             def sdk = new SDK("Google地图sdk");
             AppInfo.getInstance().addSDK(sdk);
             return true;
-        } else if (request?.activity?.name.equals("com.google.android.gms.ads.AdActivity")) {
+        } else if (request?.activity?.name == "com.google.android.gms.ads.AdActivity") {
             def sdk = new SDK("Google AdMob sdk",true);
             AppInfo.getInstance().addSDK(sdk);
             return true;
-        } else if (request?.activity?.name.equals("com.google.android.gms.ads.purchase.InAppPurchaseActivity")) {
+        } else if (request?.activity?.name == "com.google.android.gms.ads.purchase.InAppPurchaseActivity") {
             def sdk = new SDK("Firebase应用内购买广告sdk",true);
             AppInfo.getInstance().addSDK(sdk);
             return true;
+        } else if (request?.service?.name == "com.google.firebase.iid.FirebaseInstanceIdService") {
+            def sdk = new SDK("Firebase sdk");
+            AppInfo.getInstance().addSDK(sdk);
+            return true;
         }
+
         return false
     }
 }

@@ -22,6 +22,11 @@ class NeteaseHandler extends BaseHandler {
             def sdk = new SDK("易信sdk");
             AppInfo.getInstance().addSDK(sdk);
             return true;
+        } else if (request?.activity?.name == "com.youdao.sdk.common.YouDaoBrowser") {
+
+            def sdk = new SDK("有道广告sdk",true);
+            AppInfo.getInstance().addSDK(sdk);
+            return true;
         }
         return false;
     }

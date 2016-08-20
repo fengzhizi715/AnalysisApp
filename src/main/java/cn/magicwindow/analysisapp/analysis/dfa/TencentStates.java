@@ -64,6 +64,10 @@ public enum TencentStates implements State {
                     SDK sdk = new SDK("应用宝积分墙sdk");
                     AppInfo.getInstance().addSDK(sdk);
                     return AcceptingState.Accept;
+                } else if (request.getActivity().getName().equals("com.tencent.smtt.sdk.VideoActivity")) {
+                    SDK sdk = new SDK("腾讯浏览服务TBS sdk");
+                    AppInfo.getInstance().addSDK(sdk);
+                    return AcceptingState.Accept;
                 }
             }
 

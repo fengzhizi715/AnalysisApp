@@ -33,7 +33,7 @@ public class Main {
         AppInfo appInfo = AppInfo.getInstance();
         int processCount = appInfo.getProcessCount();
 
-        File file = new File("/Users/tony/jadx/apk-tool/0EAD3A83AD8788F07AF1AE15BF6525EA/AndroidManifest.xml");
+        File file = new File("/Users/tony/jadx/apk-tool/564578BB8DAF5126A3566E1E6DAEF630/AndroidManifest.xml");
         InputStream in = null;
         if (file!=null) {
             try {
