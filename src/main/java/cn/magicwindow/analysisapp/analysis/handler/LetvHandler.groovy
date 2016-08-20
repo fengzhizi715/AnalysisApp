@@ -5,17 +5,17 @@ import cn.magicwindow.analysisapp.utils.SDKUtils
 import org.springframework.stereotype.Service
 
 /**
- * Created by tony on 16/8/20.
+ * Created by tony on 16/8/21.
  */
 @Service
-class DuibaHandler extends BaseHandler {
+class LetvHandler extends BaseHandler {
 
     protected boolean handle(ActivityRequest request) {
 
-        if (request?.activity?.name == "cn.com.duiba.credits.CreditActivity") {
+        if (request?.activity?.name == "com.letv.lepaysdk.activity.CashierAcitivity") {
 
-            SDKUtils.addSDK("兑吧sdk")
-            return true
+            SDKUtils.addSDK("LePay sdk");
+            return true;
         }
         return false
     }
