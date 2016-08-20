@@ -57,6 +57,7 @@
                 <ref bean="unionpayHandler" />
                 <ref bean="duibaHandler" />
                 <ref bean="letvHandler" />
+                <ref bean="rennHandler" />
             </list>
         </property>
     </bean>
