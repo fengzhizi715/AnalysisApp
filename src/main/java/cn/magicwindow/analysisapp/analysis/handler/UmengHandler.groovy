@@ -21,6 +21,14 @@ class UmengHandler extends BaseHandler {
             def sdk = new SDK("友盟推送sdk");
             AppInfo.getInstance().addSDK(sdk);
             return true;
+        } else if (request?.service?.name == "com.umeng.update.net.DownloadingService") {
+            def sdk = new SDK("友盟自动更新sdk");
+            AppInfo.getInstance().addSDK(sdk);
+            return true;
+        } else if (request?.activity?.name == "com.umeng.fb.ConversationActivity") {
+            def sdk = new SDK("友盟用户反馈sdk");
+            AppInfo.getInstance().addSDK(sdk);
+            return true;
         }
 
         return false;

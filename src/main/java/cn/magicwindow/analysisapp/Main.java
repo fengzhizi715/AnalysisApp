@@ -91,6 +91,7 @@ public class Main {
                     }
                 }
 
+                // debug模式可以打印出疑似sdk
                 appInfo.setDebug(true);
                 System.out.println(appInfo);
             } catch (FileNotFoundException e) {
