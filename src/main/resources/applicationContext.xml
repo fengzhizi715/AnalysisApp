@@ -55,6 +55,7 @@
                 <ref bean="meipaiHandler" />
                 <ref bean="kf5Handler" />
                 <ref bean="unionpayHandler" />
+                <ref bean="duibaHandler" />
             </list>
         </property>
     </bean>

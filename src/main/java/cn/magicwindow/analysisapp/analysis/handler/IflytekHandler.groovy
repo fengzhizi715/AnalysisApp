@@ -14,9 +14,14 @@ class IflytekHandler extends BaseHandler {
 
     protected boolean handle(ActivityRequest request) {
 
-        if (request?.metadata?.name.equals("IFLYTEK_APPKEY")) {
+        if (request?.metadata?.name == "IFLYTEK_APPKEY") {
 
             def sdk = new SDK("讯飞统计sdk");
+            AppInfo.getInstance().addSDK(sdk);
+            return true;
+        } else if (request?.metadata?.name == "IFLYTEK_APPKEY_AD") {
+
+            def sdk = new SDK("讯飞移动广告sdk",true);
             AppInfo.getInstance().addSDK(sdk);
             return true;
         }
