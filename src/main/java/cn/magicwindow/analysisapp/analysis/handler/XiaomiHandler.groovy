@@ -3,6 +3,7 @@ package cn.magicwindow.analysisapp.analysis.handler
 import cn.magicwindow.analysisapp.AppInfo
 import cn.magicwindow.analysisapp.SDK
 import cn.magicwindow.analysisapp.analysis.ActivityRequest
+import cn.magicwindow.analysisapp.utils.SDKUtils
 import org.springframework.stereotype.Service
 
 /**
@@ -24,6 +25,9 @@ class XiaomiHandler extends BaseHandler {
         } else if (request?.activity?.name=="com.xiaomi.ad.puppet.AdPuppetActivity") {
             SDK sdk = new SDK("小米广告sdk", true);
             AppInfo.getInstance().addSDK(sdk);
+            return true;
+        } else if (request?.receiver?.name == "com.xiaomi.market.sdk.DownloadCompleteReceiver") {
+            SDKUtils.addSDK("小米应用商店检查更新sdk");
             return true;
         }
         return false

@@ -5,18 +5,17 @@ import cn.magicwindow.analysisapp.utils.SDKUtils
 import org.springframework.stereotype.Service
 
 /**
- * Created by tony on 16/8/20.
+ * Created by tony on 16/8/21.
  */
 @Service
-class DuibaHandler extends BaseHandler {
+class SdoHandler extends BaseHandler {
 
     protected boolean handle(ActivityRequest request) {
 
-        if (request?.activity?.name == "cn.com.duiba.credits.CreditActivity" ||
-        request?.receiver?.name == 'cn.com.duiba.credits.CreditActivity$AlarmReciver') {
+        if (request?.metadata?.name == "woa_key_appid") {
 
-            SDKUtils.addSDK("兑吧sdk")
-            return true
+            SDKUtils.addSDK("盛大无线OA sdk");
+            return true;
         }
         return false
     }

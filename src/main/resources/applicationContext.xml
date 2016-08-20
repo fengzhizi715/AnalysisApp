@@ -58,6 +58,7 @@
                 <ref bean="duibaHandler" />
                 <ref bean="letvHandler" />
                 <ref bean="rennHandler" />
+                <ref bean="sdoHandler" />
             </list>
         </property>
     </bean>

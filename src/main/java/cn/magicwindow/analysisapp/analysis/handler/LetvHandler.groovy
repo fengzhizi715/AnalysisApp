@@ -16,6 +16,10 @@ class LetvHandler extends BaseHandler {
 
             SDKUtils.addSDK("LePay sdk");
             return true;
+        } else if (request?.service?.name == "com.letvcloud.cmf.MediaService") {
+
+            SDKUtils.addSDK("乐视云sdk");
+            return true;
         }
         return false
     }
