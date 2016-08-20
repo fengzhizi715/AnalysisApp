@@ -54,6 +54,7 @@
                 <ref bean="vitamioHandler" />
                 <ref bean="meipaiHandler" />
                 <ref bean="kf5Handler" />
+                <ref bean="unionpayHandler" />
             </list>
         </property>
     </bean>

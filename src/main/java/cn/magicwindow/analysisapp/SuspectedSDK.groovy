@@ -60,7 +60,7 @@ class SuspectedSDK {
                         activty += "\r\n  <intent-filter"
                         if (Preconditions.isNotBlank(it.label)) {
                             def label = it.label
-                            activty += """android:label="$label" >"""
+                            activty += """ android:label="$label" >"""
                         } else {
                             activty += ">"
                         }

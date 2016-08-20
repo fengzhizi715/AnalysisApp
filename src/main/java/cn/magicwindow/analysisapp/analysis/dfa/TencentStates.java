@@ -60,6 +60,10 @@ public enum TencentStates implements State {
                     SDK sdk = new SDK("qq钱包sdk");
                     AppInfo.getInstance().addSDK(sdk);
                     return AcceptingState.Accept;
+                } else if (request.getActivity().getName().equals("com.tencent.assistant.oem.superapp.activity.HomeActivity")) {
+                    SDK sdk = new SDK("应用宝积分墙sdk");
+                    AppInfo.getInstance().addSDK(sdk);
+                    return AcceptingState.Accept;
                 }
             }
 
