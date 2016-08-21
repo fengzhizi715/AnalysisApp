@@ -64,6 +64,8 @@
                 <ref bean="easemobHandler" />
                 <ref bean="jawboneHandler" />
                 <ref bean="twitterHandler" />
+                <ref bean="feixinHandler" />
+                <ref bean="cmccHandler" />
             </list>
         </property>
     </bean>
