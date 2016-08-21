@@ -16,7 +16,6 @@
                 <ref bean="umengHandler" />
                 <ref bean="tencentHandler" />
                 <ref bean="aliPayHandler" />
-                <ref bean="fabricHandler" />
                 <ref bean="mediaVHandler" />
                 <ref bean="weiboHandler" />
                 <ref bean="igexinHandler" />
@@ -63,6 +62,8 @@
                 <ref bean="ucHandler" />
                 <ref bean="snailHandler" />
                 <ref bean="easemobHandler" />
+                <ref bean="jawboneHandler" />
+                <ref bean="twitterHandler" />
             </list>
         </property>
     </bean>
