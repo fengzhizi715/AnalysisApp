@@ -59,6 +59,10 @@
                 <ref bean="letvHandler" />
                 <ref bean="rennHandler" />
                 <ref bean="sdoHandler" />
+                <ref bean="evernoteHandler" />
+                <ref bean="ucHandler" />
+                <ref bean="snailHandler" />
+                <ref bean="easemobHandler" />
             </list>
         </property>
     </bean>

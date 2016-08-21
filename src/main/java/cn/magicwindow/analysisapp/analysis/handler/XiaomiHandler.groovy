@@ -14,7 +14,8 @@ class XiaomiHandler extends BaseHandler {
 
     protected boolean handle(ActivityRequest request) {
 
-        if (request?.service?.name == "com.xiaomi.push.service.XMPushService") {
+        if (request?.service?.name == "com.xiaomi.push.service.XMPushService" ||
+                request?.service?.name == "com.xiaomi.mipush.sdk.MessageHandleService") {
             SDK sdk = new SDK("小米推送sdk");
             AppInfo.getInstance().addSDK(sdk);
             return true;
@@ -22,7 +23,7 @@ class XiaomiHandler extends BaseHandler {
             SDK sdk = new SDK("小米帐号开放平台sdk");
             AppInfo.getInstance().addSDK(sdk);
             return true;
-        } else if (request?.activity?.name=="com.xiaomi.ad.puppet.AdPuppetActivity") {
+        } else if (request?.activity?.name == "com.xiaomi.ad.puppet.AdPuppetActivity") {
             SDK sdk = new SDK("小米广告sdk", true);
             AppInfo.getInstance().addSDK(sdk);
             return true;

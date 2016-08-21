@@ -82,8 +82,8 @@ class SuspectedSDK {
                         }
 
                         activty +="\r\n  </intent-filter>"
-                        activty += "\r\n</activity>"
                     }
+                    activty += "\r\n</activity>"
                 } else {
                     activty += "/>"
                 }
