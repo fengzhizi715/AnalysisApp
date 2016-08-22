@@ -15,7 +15,7 @@ class Kf5Handler extends BaseHandler{
 
         if (request?.activity?.name=="com.chosen.kf5sdk.FeedBackActivity") {
 
-            def sdk = new SDK("逸创云客服")
+            def sdk = new SDK("逸创云客服sdk")
             AppInfo.getInstance().addSDK(sdk)
             return true
         }

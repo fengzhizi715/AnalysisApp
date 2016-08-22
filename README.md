@@ -16,4 +16,4 @@ Main.java的main()是整个程序的入口，只需修改AndroidManifest.xml在m
 
 ***
 
-稍后会整理出这个工具能够分析出哪些sdk :)
+[这个工具可以分析的sdk](SDKs.md) ,目前总共96个,还在不断添加中。
