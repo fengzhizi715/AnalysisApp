@@ -53,4 +53,17 @@ public class SDK {
         result = 31 * result + (isAd ? 1 : 0);
         return result;
     }
+
+    public String toString() {
+
+        StringBuilder sb = new StringBuilder();
+
+        if (isAd()) {
+            sb.append(getSdkName()).append("(广告sdk)");
+        } else {
+            sb.append(getSdkName());
+        }
+
+        return sb.toString();
+    }
 }

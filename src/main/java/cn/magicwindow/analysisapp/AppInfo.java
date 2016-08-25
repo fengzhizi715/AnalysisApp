@@ -98,11 +98,7 @@ public class AppInfo {
             sb.append("app 所使用的第三方sdk数:").append(sdks.size()).append(",").append("其中广告sdk数:").append(adsdks.size()).append("\r\n");
 
             for (SDK sdk:sdks) {
-                if (sdk.isAd()) {
-                    sb.append(sdk.getSdkName()).append("(广告sdk)").append("\r\n");
-                } else {
-                    sb.append(sdk.getSdkName()).append("\r\n");
-                }
+                sb.append(sdk).append("\r\n");
             }
         } else {
             sb.append("app 没有使用任何第三方sdk").append("\r\n");
