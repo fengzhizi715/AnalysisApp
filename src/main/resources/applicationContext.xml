@@ -66,6 +66,7 @@
                 <ref bean="twitterHandler" />
                 <ref bean="feixinHandler" />
                 <ref bean="cmccHandler" />
+                <ref bean="yiguanHandler" />
             </list>
         </property>
     </bean>

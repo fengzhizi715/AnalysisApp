@@ -1,7 +1,5 @@
 package cn.magicwindow.analysisapp.analysis.handler
 
-import cn.magicwindow.analysisapp.AppInfo
-import cn.magicwindow.analysisapp.SDK
 import cn.magicwindow.analysisapp.analysis.ActivityRequest
 import cn.magicwindow.analysisapp.utils.SDKUtils
 import org.springframework.stereotype.Service
