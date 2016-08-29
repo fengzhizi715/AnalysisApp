@@ -125,6 +125,7 @@
 
 ##MediaV
 * MediaV广告sdk（广告sdk）
+* 聚效广告sdk（广告sdk）
 
 ##美拍
 * 美拍sdk

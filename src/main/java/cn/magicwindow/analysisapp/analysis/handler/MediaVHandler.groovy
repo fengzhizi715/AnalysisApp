@@ -16,6 +16,9 @@ class MediaVHandler extends BaseHandler {
                 request?.activity?.name == "com.mediav.ads.sdk.adcore.MvActivity") {
             SDKUtils.addSDK("MediaV广告sdk", true)
             return true;
+        } else if (request?.activity?.name == "com.mvad.ads.sdk.adcore.MvActivity") {
+            SDKUtils.addSDK("聚效广告sdk", true)
+            return true;
         }
         return false;
     }
