@@ -18,6 +18,11 @@ public class SuspectedSDKUtils {
                     || request.getActivity().getName().startsWith(AppInfo.getInstance().getPackageName()))) {
 
                 AppInfo.getInstance().addSuspectedSDK(request.getActivity());
+            } else {
+
+                if (Preconditions.isNotBlank(request.getActivity().intentFilter)) {
+                    AppInfo.getInstance().addSuspectedSDK(request.getActivity());
+                }
             }
         }  else if (request.getService() != null && request.getService().getName() != null) {
             if (!(request.getService().getName().startsWith(".")

@@ -17,6 +17,7 @@ public class Analysis {
     public BaseHandler getFirstHandler() {
 
         if (Preconditions.isNotBlank(handlers)) {
+
             for (int i = 0;i<handlers.size();i++) {
                 if(i>0) {
                     handlers.get(i-1).setNextHandler(handlers.get(i));

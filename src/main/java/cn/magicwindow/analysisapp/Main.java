@@ -2,6 +2,8 @@ package cn.magicwindow.analysisapp;
 
 import cn.magicwindow.analysisapp.analysis.*;
 import cn.magicwindow.analysisapp.analysis.handler.BaseHandler;
+import cn.magicwindow.analysisapp.func.Fn;
+import cn.magicwindow.analysisapp.func.functions.Action1;
 import cn.magicwindow.analysisapp.utils.Preconditions;
 import cn.magicwindow.analysisapp.xml.model.*;
 import cn.magicwindow.analysisapp.xml.XmlHandler;
@@ -24,7 +26,7 @@ public class Main {
 
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         Analysis analysis = (Analysis)context.getBean("analysis");
-        BaseHandler handler = analysis.getFirstHandler();
+        final BaseHandler handler = analysis.getFirstHandler();
 
         if (handler==null) {
             return;
@@ -33,7 +35,7 @@ public class Main {
         AppInfo appInfo = AppInfo.getInstance();
         int processCount = appInfo.getProcessCount();
 
-        File file = new File("/Users/tony/45C19337D38D1E25237334722A07E052/AndroidManifest.xml");
+        File file = new File("/Users/tony/jadx/apk-tool/com.oppo.community_5.4.3_50403/AndroidManifest.xml");
         InputStream in = null;
         if (file!=null) {
             try {
@@ -48,47 +50,42 @@ public class Main {
                 String packageName = androidManifest.packageName;
                 appInfo.setPackageName(packageName);
 
-                ActivityRequest request;
-                List<ActivityEntry> activities = androidManifest.application.getActivities();
-                if (Preconditions.isNotBlank(activities)) {
-                    for (ActivityEntry activity:activities) {
-                        request = new ActivityRequest(activity);
-                        handler.handleRequest(request);
+                Fn.forEach(new Action1<ActivityEntry>(){
+
+                    public void call(ActivityEntry activity) {
+                        handler.handleRequest(new ActivityRequest(activity));
                     }
-                }
+                },androidManifest.application.getActivities());
+                
+                Fn.forEach(new Action1<MetaDataEntry>() {
 
-                List<MetaDataEntry> metadatas = androidManifest.application.getMetaDatas();
-                if (Preconditions.isNotBlank(metadatas)) {
-                    for (MetaDataEntry metadata:metadatas) {
-                        request = new ActivityRequest(metadata);
-                        handler.handleRequest(request);
+                    public void call(MetaDataEntry metadata) {
+                        handler.handleRequest(new ActivityRequest(metadata));
                     }
-                }
+                },androidManifest.application.getMetaDatas());
 
-                List<ReceiverEntry> receivers = androidManifest.application.getReceivers();
-                if (Preconditions.isNotBlank(receivers)) {
-                    for (ReceiverEntry receiver:receivers) {
-                        request = new ActivityRequest(receiver);
-                        handler.handleRequest(request);
+                Fn.forEach(new Action1<ReceiverEntry>() {
+
+                    public void call(ReceiverEntry receiver) {
+                        handler.handleRequest(new ActivityRequest(receiver));
                     }
-                }
+                },androidManifest.application.getReceivers());
 
-                List<ServiceEntry> services = androidManifest.application.getServices();
-                if (Preconditions.isNotBlank(services)) {
-                    Multimap<String,ServiceEntry> multimap = ArrayListMultimap.create();
-                    for (ServiceEntry service:services) {
+                final Multimap<String,ServiceEntry> multimap = ArrayListMultimap.create();
+                Fn.forEach(new Action1<ServiceEntry>() {
 
+                    public void call(ServiceEntry service) {
                         if (service.getProcess()!=null) {
                             multimap.put(service.getProcess(),service);
                         }
-                        request = new ActivityRequest(service);
-                        handler.handleRequest(request);
-                    }
 
-                    if (multimap.keySet()!=null) {
-                        processCount+=multimap.keySet().size();
-                        appInfo.setProcessCount(processCount);
+                        handler.handleRequest(new ActivityRequest(service));
                     }
+                },androidManifest.application.getServices());
+
+                if (multimap.keySet()!=null) {
+                    processCount+=multimap.keySet().size();
+                    appInfo.setProcessCount(processCount);
                 }
 
                 // debug模式可以打印出疑似sdk
