@@ -24,9 +24,9 @@ public class SuspectedSDKUtils {
                     AppInfo.getInstance().addSuspectedSDK(request.getActivity());
                 }
             }
-        }  else if (request.getService() != null && request.getService().getName() != null) {
-            if (!(request.getService().getName().startsWith(".")
-                    || request.getService().getName().startsWith(AppInfo.getInstance().getPackageName()))) {
+        }  else if (request.getService() != null && request.getService().name != null) {
+            if (!(request.getService().name.startsWith(".")
+                    || request.getService().name.startsWith(AppInfo.getInstance().getPackageName()))) {
 
                 AppInfo.getInstance().addSuspectedSDK(request.getService());
             }

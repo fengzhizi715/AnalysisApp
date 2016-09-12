@@ -110,17 +110,17 @@ public enum TencentStates implements State {
 
         public State next(ActivityRequest request) {
 
-            if (request.getService().getName() != null) {
-                if (request.getService().getName().equals("com.tencent.qalsdk.service.QalService")) {
+            if (request.getService().name != null) {
+                if (request.getService().name.equals("com.tencent.qalsdk.service.QalService")) {
                     SDK sdk = new SDK("腾讯云通信sdk");
                     AppInfo.getInstance().addSDK(sdk);
                     return AcceptingState.Accept;
-                } else if (request.getService().getName().equals("com.tencent.tmassistantsdk.downloadservice.TMAssistantDownloadSDKService")) {
+                } else if (request.getService().name.equals("com.tencent.tmassistantsdk.downloadservice.TMAssistantDownloadSDKService")) {
                     SDK sdk = new SDK("应用宝省流量更新sdk");
                     AppInfo.getInstance().addSDK(sdk);
                     return AcceptingState.Accept;
-                } else if (request.getService().getName().equals("com.tencent.android.tpush.service.XGPushService")
-                        || request.getService().getName().equals("com.tencent.android.tpush.rpc.XGRemoteService")) {
+                } else if (request.getService().name.equals("com.tencent.android.tpush.service.XGPushService")
+                        || request.getService().name.equals("com.tencent.android.tpush.rpc.XGRemoteService")) {
                     SDK sdk = new SDK("信鸽Push sdk");
                     AppInfo.getInstance().addSDK(sdk);
                     return AcceptingState.Accept;

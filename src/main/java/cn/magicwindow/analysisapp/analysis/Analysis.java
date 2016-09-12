@@ -18,7 +18,8 @@ public class Analysis {
 
         if (Preconditions.isNotBlank(handlers)) {
 
-            for (int i = 0;i<handlers.size();i++) {
+            int len = handlers.size();
+            for (int i = 0;i<len;i++) {
                 if(i>0) {
                     handlers.get(i-1).setNextHandler(handlers.get(i));
                 }

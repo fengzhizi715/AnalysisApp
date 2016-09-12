@@ -75,8 +75,8 @@ public class Main {
                 Fn.forEach(new Action1<ServiceEntry>() {
 
                     public void call(ServiceEntry service) {
-                        if (service.getProcess()!=null) {
-                            multimap.put(service.getProcess(),service);
+                        if (service.process!=null) {
+                            multimap.put(service.process,service);
                         }
 
                         handler.handleRequest(new ActivityRequest(service));

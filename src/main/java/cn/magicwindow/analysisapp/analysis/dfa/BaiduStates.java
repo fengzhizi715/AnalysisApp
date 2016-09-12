@@ -73,8 +73,8 @@ public enum BaiduStates implements State {
 
         public State next(ActivityRequest request) {
 
-            if (request.getService().getName() !=null) {
-                if (request.getService().getName().equals("com.baidu.android.pushservice.PushService")) {
+            if (request.getService().name !=null) {
+                if (request.getService().name.equals("com.baidu.android.pushservice.PushService")) {
                     SDK sdk = new SDK("百度云推送sdk");
                     AppInfo.getInstance().addSDK(sdk);
                     return AcceptingState.Accept;

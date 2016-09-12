@@ -15,7 +15,6 @@ public class SDKUtils {
 
     public static void addSDK(String sdkName,boolean isAd) {
 
-        SDK sdk = new SDK(sdkName,isAd);
-        AppInfo.getInstance().addSDK(sdk);
+        AppInfo.getInstance().addSDK(new SDK(sdkName,isAd));
     }
 }
