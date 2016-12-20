@@ -67,6 +67,7 @@
                 <ref bean="feixinHandler" />
                 <ref bean="cmccHandler" />
                 <ref bean="yiguanHandler" />
+                <ref bean="magicWindowHandler" />
             </list>
         </property>
     </bean>

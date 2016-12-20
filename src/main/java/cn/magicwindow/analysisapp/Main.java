@@ -18,6 +18,7 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
+ * 程序入口
  * Created by tony on 16/8/8.
  */
 public class Main {
@@ -35,7 +36,7 @@ public class Main {
         AppInfo appInfo = AppInfo.getInstance();
         int processCount = appInfo.getProcessCount();
 
-        File file = new File("/Users/tony/jadx/apk-tool/com.oppo.community_5.4.3_50403/AndroidManifest.xml");
+        File file = new File("AndroidManifest.xml");
         InputStream in = null;
         if (file!=null) {
             try {
@@ -89,7 +90,7 @@ public class Main {
                 }
 
                 // debug模式可以打印出疑似sdk
-                appInfo.setDebug(true);
+//                appInfo.setDebug(true);
                 System.out.println(appInfo);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
