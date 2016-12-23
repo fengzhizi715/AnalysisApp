@@ -38,20 +38,11 @@ public class Preconditions {
                 return true;
             }
         } else if (t instanceof String) {
-            int strLen;
+            String str = (String)t;
+            if (str.length()==0) return true;
 
-            strLen = ((String)t).length();
-            if (strLen == 0) {
-                return true;
-            }
-
-            for (int i = 0; i < strLen; i++) {
-                if ((Character.isWhitespace(((String)t).charAt(i)) == false)) {
-                    return false;
-                }
-            }
-
-            return true;
+            str = str.trim();
+            if (str.length()==0) return true;
         }
 
         return result;
