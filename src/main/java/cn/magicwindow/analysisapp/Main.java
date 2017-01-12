@@ -2,8 +2,6 @@ package cn.magicwindow.analysisapp;
 
 import cn.magicwindow.analysisapp.analysis.*;
 import cn.magicwindow.analysisapp.analysis.handler.BaseHandler;
-import cn.magicwindow.analysisapp.func.Fn;
-import cn.magicwindow.analysisapp.func.functions.Action1;
 import cn.magicwindow.analysisapp.utils.Preconditions;
 import cn.magicwindow.analysisapp.xml.model.*;
 import cn.magicwindow.analysisapp.xml.XmlHandler;
@@ -51,42 +49,47 @@ public class Main {
                 String packageName = androidManifest.packageName;
                 appInfo.setPackageName(packageName);
 
-                Fn.forEach(new Action1<ActivityEntry>(){
+                List<ActivityEntry> activities = androidManifest.application.getActivities();
+                if (Preconditions.isNotBlank(activities)) {
 
-                    public void call(ActivityEntry activity) {
-                        handler.handleRequest(new ActivityRequest(activity));
+                    activities.parallelStream().forEach(
+                            activityEntry -> handler.handleRequest(new ActivityRequest(activityEntry))
+                    );
+                }
+
+                List<MetaDataEntry> metadatas = androidManifest.application.getMetaDatas();
+                if (Preconditions.isNotBlank(metadatas)) {
+
+                    metadatas.parallelStream().forEach(
+                            metaDataEntry -> handler.handleRequest(new ActivityRequest(metaDataEntry))
+                    );
+                }
+
+                List<ReceiverEntry> receivers = androidManifest.application.getReceivers();
+                if (Preconditions.isNotBlank(receivers)) {
+
+                    receivers.parallelStream().forEach(
+                            receiverEntry -> handler.handleRequest(new ActivityRequest(receiverEntry))
+                    );
+                }
+
+                List<ServiceEntry> services = androidManifest.application.getServices();
+                Multimap<String,ServiceEntry> multimap = ArrayListMultimap.create();
+                if (Preconditions.isNotBlank(services)) {
+
+                    services.parallelStream().forEach(
+                            serviceEntry -> {
+                                if (serviceEntry.process!=null) {
+                                    multimap.put(serviceEntry.process, serviceEntry);
+                                }
+                                handler.handleRequest(new ActivityRequest(serviceEntry));
+                            }
+                    );
+
+                    if (multimap.keySet()!=null) {
+                        processCount+=multimap.keySet().size();
+                        appInfo.setProcessCount(processCount);
                     }
-                },androidManifest.application.getActivities());
-                
-                Fn.forEach(new Action1<MetaDataEntry>() {
-
-                    public void call(MetaDataEntry metadata) {
-                        handler.handleRequest(new ActivityRequest(metadata));
-                    }
-                },androidManifest.application.getMetaDatas());
-
-                Fn.forEach(new Action1<ReceiverEntry>() {
-
-                    public void call(ReceiverEntry receiver) {
-                        handler.handleRequest(new ActivityRequest(receiver));
-                    }
-                },androidManifest.application.getReceivers());
-
-                final Multimap<String,ServiceEntry> multimap = ArrayListMultimap.create();
-                Fn.forEach(new Action1<ServiceEntry>() {
-
-                    public void call(ServiceEntry service) {
-                        if (service.process!=null) {
-                            multimap.put(service.process,service);
-                        }
-
-                        handler.handleRequest(new ActivityRequest(service));
-                    }
-                },androidManifest.application.getServices());
-
-                if (multimap.keySet()!=null) {
-                    processCount+=multimap.keySet().size();
-                    appInfo.setProcessCount(processCount);
                 }
 
                 // debug模式可以打印出疑似sdk
