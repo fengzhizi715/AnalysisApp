@@ -34,7 +34,7 @@ public class Main {
         AppInfo appInfo = AppInfo.getInstance();
         int processCount = appInfo.getProcessCount();
 
-        File file = new File("AndroidManifest.xml");
+        File file = new File("/Users/tony/jadx/apk-tool/com.lemon.faceu_2.1.1_111/AndroidManifest.xml");
         InputStream in = null;
         if (file!=null) {
             try {
@@ -93,7 +93,7 @@ public class Main {
                 }
 
                 // debug模式可以打印出疑似sdk
-//                appInfo.setDebug(true);
+                appInfo.setDebug(true);
                 System.out.println(appInfo);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

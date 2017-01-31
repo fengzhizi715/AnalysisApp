@@ -97,9 +97,10 @@ public class AppInfo {
 
             sb.append("app 所使用的第三方sdk数:").append(sdks.size()).append(",").append("其中广告sdk数:").append(adsdks.size()).append("\r\n");
 
-            for (SDK sdk:sdks) {
-                sb.append(sdk).append("\r\n");
-            }
+            sdks.forEach(
+                    sdk ->
+                    sb.append(sdk).append("\r\n")
+            );
         } else {
             sb.append("app 没有使用任何第三方sdk").append("\r\n");
         }
@@ -109,23 +110,14 @@ public class AppInfo {
 
         if (isDebug) {
             if (Preconditions.isNotBlank(getSuspectedSDKs())) {
-                Collections.sort(getSuspectedSDKs(), new Comparator() {
-                    public int compare(Object o1, Object o2) {
-                        SuspectedSDK suspectedSDK1 = (SuspectedSDK) o1;
-                        SuspectedSDK suspectedSDK2 = (SuspectedSDK) o2;
 
-                        if (suspectedSDK1.getType()!=null && suspectedSDK2.getType()!=null) {
-                            return suspectedSDK1.getType().getIndex()-suspectedSDK2.getType().getIndex();
-                        }
-
-                        return 0;
-                    }
-                });
+                Collections.sort(getSuspectedSDKs(),Comparator.comparing((SuspectedSDK sdk)->sdk.getType().getIndex()));
 
                 sb.append("\r\n\r\ndebug模式下发现疑似sdk:\r\n");
-                for(SuspectedSDK item:getSuspectedSDKs()) {
-                    sb.append(item).append("\r\n");
-                }
+
+                getSuspectedSDKs().forEach(
+                        item->sb.append(item).append("\r\n")
+                );
             }
         }
 
