@@ -67,7 +67,7 @@ class SuspectedSDK {
 
                         if (Preconditions.isNotBlank(it.actions)) {
                             it.actions.each {
-                                def intentAction ->
+                                 intentAction ->
                                     def intentActionName = intentAction.name
                                     activty +="""\r\n    <action android:name="$intentActionName" />"""
                             }
@@ -75,7 +75,7 @@ class SuspectedSDK {
 
                         if (Preconditions.isNotBlank(it.categories)) {
                             it.categories.each {
-                                def intentCategory ->
+                                 intentCategory ->
                                     def intentCategoryName = intentCategory.name
                                     activty +="""\r\n    <category android:name="$intentCategoryName" />"""
                             }

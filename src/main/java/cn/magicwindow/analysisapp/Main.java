@@ -11,8 +11,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.*;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -34,7 +32,7 @@ public class Main {
         AppInfo appInfo = AppInfo.getInstance();
         int processCount = appInfo.getProcessCount();
 
-        File file = new File("/Users/tony/jadx/apk-tool/com.lemon.faceu_2.1.1_111/AndroidManifest.xml");
+        File file = new File("AndroidManifest.xml");
         InputStream in = null;
         if (file!=null) {
             try {
@@ -94,7 +92,7 @@ public class Main {
 
                 // debug模式可以打印出疑似sdk
                 appInfo.setDebug(true);
-                System.out.println(appInfo);
+//                System.out.println(appInfo);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } finally {
