@@ -2,6 +2,7 @@ package cn.magicwindow.analysisapp.utils;
 
 import cn.magicwindow.analysisapp.AppInfo;
 import cn.magicwindow.analysisapp.analysis.ActivityRequest;
+import com.safframwork.tony.common.utils.Preconditions;
 
 /**
  * Created by tony on 16/8/19.

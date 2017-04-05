@@ -76,5 +76,12 @@
             <version>1.16.10</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- tony-common-utils -->
+        <dependency>
+            <groupId>tony-common</groupId>
+            <artifactId>tony-common-utils</artifactId>
+            <version>1.0.1</version>
+        </dependency>
     </dependencies>
 </project>
