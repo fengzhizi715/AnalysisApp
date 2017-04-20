@@ -68,6 +68,7 @@
                 <ref bean="cmccHandler" />
                 <ref bean="yiguanHandler" />
                 <ref bean="magicWindowHandler" />
+                <ref bean="linkedMeHandler" />
             </list>
         </property>
     </bean>

@@ -15,8 +15,8 @@ public class LightspeedHandler extends BaseHandler {
     protected boolean handle(ActivityRequest request) {
 
         if (request.getService()!=null
-                && request.getService().getName()!=null
-                && request.getService().getName().equals("com.arrownock.push.PushService")) {
+                && request.getService().name!=null
+                && request.getService().name.equals("com.arrownock.push.PushService")) {
             SDK sdk = new SDK("Lightspeed Push sdk");
             AppInfo.getInstance().addSDK(sdk);
             return true;
