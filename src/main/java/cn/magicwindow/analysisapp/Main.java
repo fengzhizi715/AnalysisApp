@@ -2,11 +2,11 @@ package cn.magicwindow.analysisapp;
 
 import cn.magicwindow.analysisapp.analysis.*;
 import cn.magicwindow.analysisapp.analysis.handler.BaseHandler;
+import cn.magicwindow.analysisapp.utils.Preconditions;
 import cn.magicwindow.analysisapp.xml.model.*;
 import cn.magicwindow.analysisapp.xml.XmlHandler;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
-import com.safframwork.tony.common.utils.Preconditions;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

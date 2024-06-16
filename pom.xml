@@ -77,11 +77,11 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- tony-common-utils -->
-        <dependency>
-            <groupId>tony-common</groupId>
-            <artifactId>tony-common-utils</artifactId>
-            <version>1.0.1</version>
-        </dependency>
+<!--        &lt;!&ndash; tony-common-utils &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>tony-common</groupId>-->
+<!--            <artifactId>tony-common-utils</artifactId>-->
+<!--            <version>1.0.1</version>-->
+<!--        </dependency>-->
     </dependencies>
 </project>

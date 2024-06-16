@@ -1,7 +1,7 @@
 package cn.magicwindow.analysisapp.analysis;
 
 import cn.magicwindow.analysisapp.analysis.handler.BaseHandler;
-import com.safframwork.tony.common.utils.Preconditions;
+import cn.magicwindow.analysisapp.utils.Preconditions;
 import lombok.Data;
 
 import java.util.List;
